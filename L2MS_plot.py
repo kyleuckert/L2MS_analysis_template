@@ -115,15 +115,41 @@ def plot_peak_vs_IR(peak_value, IR, title, save_file):
 	plt.plot(temp_IR, temp_peak, 'k.')
 	plt.plot(temp_IR, temp_peak, 'k-')
 	plt.xlabel('IR wavelength (nm)')
-	plt.ylabel('peak Value')
+	plt.ylabel('Peak Value')
 	plt.title(title)
 	#plt.show()
 	pylab.savefig(save_file, format='png', dpi=100)
 	plt.clf()
-	
+
+def plot_peak_vs_concentration(peak_value, con, title, save_file):
+	#sort lists by increasing temperature
+	sorted_index = sorted(range(len(con)), key=lambda k: con[k])
+	temp_con=[]
+	temp_peak=[]
+	for index in sorted_index:
+		#print temperature[index], peak_value[index]
+		temp_con.append(con[index])
+		temp_peak.append(peak_value[index])
+	fig = plt.figure()
+	ax1=fig.add_subplot(111)
+	ax1.plot(temp_con, temp_peak, 'k.')
+	ax1.plot(temp_con, temp_peak, 'k-')
+	m, b = np.polyfit(temp_con, temp_peak, 1)
+	#to add a line of best fit
+	#ax1.plot([50,100,1000,10000,50000], np.poly1d(np.polyfit(temp_con, temp_peak, 2))([50,100,1000,10000,50000]), 'r-')
+	ax1.set_xlabel('concentration (ppm)')
+	ax1.set_ylabel('peak value')
+	ax1.set_title(title)
+	#ax1.set_xlim([10,50000])
+	#for log scaling
+	ax1.set_yscale('log')
+	ax1.set_xscale('log')
+	pylab.savefig(save_file, format='png', dpi=100)
+	plt.clf()
+
 def runningMeanFast(x, N):
     return np.convolve(x, np.ones((N,))/N)[(N-1):]
-    
+
 def plot_IR_spectrum(wavelength, reflectance, x_range, title, save_file):
 	fig = plt.figure()
 	ax1=fig.add_subplot(111)
@@ -178,7 +204,7 @@ def plot_mass_spectrum(mass, intensity, mass_range, save_file):
 	ax1=fig.add_subplot(111)
 	ax1.plot(mass, intensity, '-')
 	ax1.set_xlabel('Mass/Charge (Da)')
-	ax1.set_ylabel('Intensity (mV)')
+	ax1.set_ylabel('Intensity (V)')
 	ax1.set_xlim(mass_range)
 	#ax1.set_ylim([0,0.5])
 	ax1.xaxis.set_minor_locator(AutoMinorLocator(5))
@@ -186,8 +212,6 @@ def plot_mass_spectrum(mass, intensity, mass_range, save_file):
 	#plt.show()
 	pylab.savefig(save_file)
 	plt.clf()
-
-
 
 def plot_mass_spectrum_wavelength(mass, intensity, IR, save_file):
 	cmap=cm.get_cmap('jet')
@@ -210,7 +234,7 @@ def plot_mass_spectrum_smooth(mass, intensity, mass_range, save_file, smooth):
 	#ax1.plot(mass, intensity, 'k-')
 	ax1.plot(mass, runningMeanFast(intensity,smooth), 'k-')
 	ax1.set_xlabel('Mass/Charge (Da)')
-	ax1.set_ylabel('Intensity (mV)')
+	ax1.set_ylabel('Intensity (V)')
 	ax1.set_xlim(mass_range)
 	#ax1.set_ylim([-0.005,0.065])
 	ax1.xaxis.set_minor_locator(AutoMinorLocator(5))
