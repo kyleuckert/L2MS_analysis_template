@@ -109,7 +109,7 @@ These programs will plot L2MS mass spectrometry data, including intensity vs mas
 <b>Plot individual mass spectrum (line 185-186):</b>
 <li>Edit the following template (and place after line 152) with the following required input parameters:</li>
 <ul>
-<li>mass specturm index value for (from .txt file list, counting starts at index 0)</li>
+<li>mass specturm index value (from .txt file list, counting starts at index 0)</li>
 <li>x axis range ([mass_min, mass_max])</li>
 <li>save file name</li>
 </ul></ul></p>
@@ -162,8 +162,21 @@ These programs will plot L2MS mass spectrometry data, including intensity vs mas
 <p><ul>
 <b>Annotate, Compare, and/or offset mass spectra (line > 200):</b>
 <li>The templates after line 200 demonstrate how to plot mass spectra in a more customizable way (e.g. compare two mass spectra, offset mass spectra, plot on a log scale).</li>
-<li>Edit the templates (and place after line 152) with the required input parameters noted in the comments</li>
-</ul></p>
+<li>Edit the templates (and place after line 152) with the the following required input parameters:</li>
+<ul>
+<li>dictionary key value (key='breadboard', end of string in .txt file: 'filenames_breadboard.txt')</li>
+<li>mass specturm index value (from .txt file list, counting starts at index 0)</li>
+<li>offset value</li>
+<li>mass spectra colors and linestyles (b- produces a solid blue line, r. produces a dotted red line, etc)</li>
+</ul></ul></p>
+	ax1.plot(data['breadboard_mass'][index_1], [x+offset_1 for x in data['breadboard_intensity'][index_1]], 'b-', data['breadboard_mass'][index_2], [x+offset_2 for x in data['breadboard_intensity'][index_2]], 'r-', data['breadboard_mass'][index_3], data['breadboard_intensity'][index_3], 'g-')
+<p><ul><ul>
+<li>axis labels</li>
+<li>x axis range ([mass_min, mass_max]) and or log scaling (ax1.set_yscale('log'))</li>
+<li>save file name</li>
+<li>annotations:</li>
+</ul></ul></p>
+	ax1.text(x_pos, y_pos, 'annotation text', verticalalignment='bottom', horizontalalignment='right', transform=ax1.transAxes, color='r')
 
 
 <b>Installation:</b><br>
