@@ -172,7 +172,7 @@ These programs will plot L2MS mass spectrometry data, including intensity vs mas
 	ax1.plot(data['breadboard_mass'][index_1], [x+offset_1 for x in data['breadboard_intensity'][index_1]], 'b-', data['breadboard_mass'][index_2], [x+offset_2 for x in data['breadboard_intensity'][index_2]], 'r-', data['breadboard_mass'][index_3], data['breadboard_intensity'][index_3], 'g-')
 <p><ul><ul>
 <li>axis labels</li>
-<li>x axis range ([mass_min, mass_max]) and or log scaling (ax1.set_yscale('log'))</li>
+<li>axis range (ax1.set_xlim([mass_min, mass_max])) and or log scaling (ax1.set_yscale('log'))</li>
 <li>save file name</li>
 <li>annotations:</li>
 </ul></ul></p>
