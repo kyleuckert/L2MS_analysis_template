@@ -156,6 +156,8 @@ def peak_value_FWHM(mass, intensity, peak_value, peak_center, peak_width, int_fr
 		#to compare with conventional integration
 		#print sum(intensity[i][FWHM_low:FWHM_high]) * ((mass[i][FWHM_high] - mass[i][FWHM_low])/(FWHM_high-FWHM_low))
 		peak_value.append(peak_temp)
+		#reset intensity values for plotting
+		intensity[i][index_low:index_high] = intensity[i][index_low:index_high] + np.median(intensity[i][:])
 
 #max peak value calculation
 def max_peak_value(mass, intensity, peak_value, peak_center, peak_width):

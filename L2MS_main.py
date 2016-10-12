@@ -5,6 +5,11 @@ import os
 import numpy as np
 import sys
 
+#import matplotlib
+#import pylab
+#from matplotlib.ticker import AutoMinorLocator
+#import matplotlib.pyplot as plt
+
 #define paths
 data_path = '/Users/kyleuckert/Documents/Research/MS/Data/2015JUL22/enstatite_tryptophan_1000ppm_room_temp/'
 analysis_path='/Users/kyleuckert/Documents/Research/MS/Analysis/2015JUL22/enstatite_tryptophan_1000ppm_room_temp/'

@@ -339,6 +339,7 @@ def plot_mass_spectrum_wavelength_with_IR(mass, intensity, IR, IR_file, IR_data,
 	cb = plt.colorbar(cs, ax=ax3, orientation='horizontal')
 	cb.set_ticks([0, intensity.max()/4, intensity.max()/2, intensity.max()*3/4, intensity.max()])
 	cb.ax.minorticks_on()
+	cb.set_label('relative peak intensity')
 	#cb.set_label('intensity')
 	plt.savefig(save_file, format='png', dpi=100)
 	plt.clf()
